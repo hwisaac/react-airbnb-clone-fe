@@ -1,5 +1,6 @@
-import { Box, Grid, HStack, Skeleton, SkeletonText } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { Grid } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
+import { getRooms } from '../api';
 import Room from '../components/Room';
 import RoomSkeleton from '../components/RoomSkeleton';
 
@@ -21,19 +22,7 @@ interface IRoom {
 }
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [rooms, setRooms] = useState<IRoom[]>([]);
-  const fetchRooms = async () => {
-    console.log('시작 ');
-    const response = await fetch('http://127.0.0.1:8000/api/v1/rooms/');
-    console.log(response);
-    const json = await response.json();
-    setRooms(json);
-    setIsLoading(false);
-  };
-  useEffect(() => {
-    fetchRooms();
-  }, []);
+  const { isLoading, data } = useQuery<IRoom[]>(['rooms'], getRooms);
   return (
     <Grid
       mt={10}
@@ -64,9 +53,13 @@ export default function Home() {
           <RoomSkeleton />
         </>
       ) : null}
-      {rooms.map((room) => (
+      {data?.map((room) => (
         <Room
-          imageUrl={room.photos[0].file}
+          imageUrl={
+            room.photos[0]
+              ? room.photos[0].file
+              : 'https://fastly.picsum.photos/id/1019/200/200.jpg?hmac=KHfXQt_BONEwuWtr85KJ-jStSnVp_GL9FWpJXW_XtKw'
+          }
           name={room.name}
           rating={room.rating}
           city={room.city}
