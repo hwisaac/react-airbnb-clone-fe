@@ -56,6 +56,7 @@ export default function Home() {
       {data?.map((room) => (
         <Room
           key={room.pk}
+          pk={room.pk}
           imageUrl={
             room.photos[0]
               ? room.photos[0].file
