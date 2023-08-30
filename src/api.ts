@@ -75,14 +75,12 @@ export const githubLogIn = (code: string) =>
           username,
           password,
         }: IUsernameLoginVariables) =>
-          instance
-            .post(
-              `/users/log-in`,
-              { username, password },
-              {
-                headers: {
-                  'X-CSRFToken': Cookie.get('csrftoken') || '',
-                },
-              }
-            )
-            .then((response) => response.data);
+          instance.post(
+            `/users/log-in`,
+            { username, password },
+            {
+              headers: {
+                'X-CSRFToken': Cookie.get('csrftoken') || '',
+              },
+            }
+          );
