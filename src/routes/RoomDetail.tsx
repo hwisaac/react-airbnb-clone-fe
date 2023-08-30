@@ -48,12 +48,24 @@ export default function RoomDetail() {
             overflow={'hidden'}
             key={index}>
             <Skeleton isLoaded={!isLoading} h='100%' w='100%'>
-              <Image
+              {/* <Image
                 objectFit={'cover'}
                 w='100%'
                 h='100%'
-                src={data?.photos[index]?.file ? data?.photos[index].file : ''}
-              />
+                src={
+                  data?.photos[index]?.file
+                    ? data?.photos[index].file
+                    : 'https://fastly.picsum.photos/id/1019/200/200.jpg?hmac=KHfXQt_BONEwuWtr85KJ-jStSnVp_GL9FWpJXW_XtKw'
+                }
+              /> */}
+              {data?.photos[index] ? (
+                <Image
+                  objectFit={'cover'}
+                  w='100%'
+                  h='100%'
+                  src={data?.photos[index].file}
+                />
+              ) : null}
             </Skeleton>
           </GridItem>
         ))}
