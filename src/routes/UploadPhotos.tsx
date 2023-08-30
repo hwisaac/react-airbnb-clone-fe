@@ -11,10 +11,12 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import { createPhoto, getUploadURL, uploadImage } from '../api';
 import useHostOnlyPage from '../components/HostOnlyPage';
 import ProtectedPage from '../components/ProtectedPage';
-
+import { useState } from 'react';
 interface IForm {
   file: FileList;
 }
