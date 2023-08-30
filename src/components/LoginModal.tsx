@@ -25,6 +25,7 @@ import {
   IUsernameLoginVariables,
   usernameLogIn,
 } from '../api';
+
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
