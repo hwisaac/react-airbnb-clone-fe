@@ -66,6 +66,14 @@ export default function RoomDetail() {
                   src={data?.photos[index].file}
                 />
               ) : null}
+              {/* {data?.photos && data.photos.length > 4 ? (
+                <Image
+                  objectFit={'cover'}
+                  w='100%'
+                  h='100%'
+                  src={data?.photos[index].file}
+                />
+              ) : null} */}
             </Skeleton>
           </GridItem>
         ))}
